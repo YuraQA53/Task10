@@ -1,61 +1,66 @@
 package ru.netology;
 
 public class Radio {
-    private int currentStation;
+    private int currentRadioStation;
     private int currentVolume;
 
-    public int getCurrentStation() {
-        return currentStation;
+    public int getCurrentRadioStation() {
+        return currentRadioStation;
+    }
+
+    public void setCurrentRadioStation(int newCurrentRadioStation) {
+        if (newCurrentRadioStation < 0) {
+            return;
+        }
+        if (newCurrentRadioStation > 9) {
+            return;
+        }
+        currentRadioStation = newCurrentRadioStation;
     }
 
     public int getCurrentVolume() {
         return currentVolume;
     }
 
-    public void setCurrentStation(int newCurrentStation) {
-        if (newCurrentStation < 0) {
-            return;
-        }
-        if (newCurrentStation > 9) {
-            return;
-        }
-        currentStation = newCurrentStation;
-    }
-
-    public void setNextStation() {
-        if (currentStation == 9) {
-            currentStation = -1;
-        }
-        currentStation = currentStation + 1;
-    }
-
-    public void setPrevStation() {
-        if (currentStation == 0) {
-            currentStation = 10;
-        }
-        currentStation = currentStation - 1;
-    }
-
     public void setCurrentVolume(int newCurrentVolume) {
         if (newCurrentVolume < 0) {
             return;
         }
-        if (newCurrentVolume > 10) {
+        if (newCurrentVolume > 9) {
             return;
         }
         currentVolume = newCurrentVolume;
     }
 
     public void increaseVolume() {
-        if (currentVolume < 10) {
+        if (currentVolume < 9) {
             currentVolume = currentVolume + 1;
+        } else {
+            currentVolume = 9;
         }
     }
 
-    public void decreaseVolume() {
+    public void reduceVolume() {
         if (currentVolume > 0) {
             currentVolume = currentVolume - 1;
+        } else {
+            currentVolume = 0;
+        }
+    }
+
+    public void next() {
+        if (currentRadioStation < 9) {
+            currentRadioStation = currentRadioStation + 1;
+        } else {
+            currentRadioStation = 0;
+        }
+    }
+
+    public void prev() {
+        if (currentRadioStation > 1) {
+            currentRadioStation = currentRadioStation - 1;
+        } else {
+            currentRadioStation = 9;
         }
     }
 }
-
